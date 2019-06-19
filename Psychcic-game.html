@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Psychcic Game!!</title>
+  <img src="https://scontent.fatl1-1.fna.fbcdn.net/v/t1.0-9/150467_10151421694807992_1066486717_n.jpg?_nc_cat=110&_nc_oc=AQlxjJNqBPc9eqn_afFE0wcOr5BW8LNTMAFzZCe3xC4mkSYhb64VOwxiKlXUE6_n7TA&_nc_ht=scontent.fatl1-1.fna&oh=652fd2e0dcd37f42bb5aeaa18ad712ea&oe=5D8C6EF9">
+</head>
+<body>
+    <div id="game">
+        <h1>THE PSYCHIC GAME</h1>
+        <p>Wins:</p>
+        <p>Losses:</p>
+        <p>Guesses Left:</p>
+        <p>Your Guesses Thus Far:</p>
+
+        
+    </div>
+    <script type="text/javascript">
+
+    var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
+    var wins = 0;
+    var losses = 0;
+    var numGuesses = 9;
+    var userChoices = [];
+
+    document.onkeyup = function(event){
+        var userGuess = event.key;
+
+        var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+        var options = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
+        if (options.indexOf(userGuess) > -1) {
+            if (userGuess === computerGuess){
+                wins++;
+                numGuesses = 9;
+                userChoices = [];
+            }
+
+        if (userGuess != computerGuess){
+            numGuesses --;
+            userChoices.push(userGuess)
+        }
+        
+        if (numGuesses === 0){
+            numGuesses = 9;
+            losses ++;
+            userChoices = [];
+        }
+
+        var html = 
+         "<h1> THE PSYCHIC GAME </h1>" +
+         "<p>Guess what letter I've got running across my brain homie!!</p>" +
+         "<p>Wins: " + wins + "</p>" +
+         "<p>Losses: " + losses + "</p>" +
+         "<p>Guesses Left: " + numGuesses + "</p>" +
+         "<p>Your Guesses thus far: " + userChoices.join(", ") + "</p>";
+
+         document.querySelector("#game").innerHTML = html;
+        }
+    };
+
+
+
+    
+    
+    </script>
+</body>
+</html>
